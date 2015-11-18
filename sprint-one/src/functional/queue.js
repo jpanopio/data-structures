@@ -9,10 +9,18 @@ var Queue = function() {
 
   someInstance.enqueue = function(value) {
     queueSize++;
+    storage[queueSize] = value;
   };
 
   someInstance.dequeue = function() {
+    var dequeued = storage[1];
+    for(var key in storage){
+      var nextKey = Number(key) + 1;
+      storage[key] = storage[String(nextKey)];
+    }
+    storage[queueSize] = undefined;
     queueSize--;
+    return dequeued;
   };
 
   someInstance.size = function() {
