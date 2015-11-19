@@ -16,7 +16,7 @@ var Queue = function() {
     var dequeued = storage[1];
     for(var key in storage){
       var nextKey = Number(key) + 1;
-      storage[key] = storage[String(nextKey)];
+      storage[key] = storage[nextKey];
     }
     storage[queueSize] = undefined;
     queueSize--;
