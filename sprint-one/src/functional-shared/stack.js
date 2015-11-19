@@ -23,11 +23,11 @@ stackMethods.size = function(){
 
 stackMethods.push = function(value){
   this.stackSize++;
-  this.storage[this.stackSize] = value;
+  this[this.stackSize] = value;
 };
 
 stackMethods.pop = function(){
-  var popped = this.storage[this.stackSize];
+  var popped = this[this.stackSize];
   this.stackSize--;
   return popped;
 };
