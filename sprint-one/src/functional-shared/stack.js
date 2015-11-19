@@ -18,7 +18,18 @@ var extend = function(to, from) {
 var stackMethods = {};
 
 stackMethods.size = function(){
-  return this.stackSize;
+  return this.stackSize >= 0 ? this.stackSize : 0;
+}
+
+stackMethods.push = function(value){
+  this.stackSize++;
+  this.storage[this.stackSize] = value;
+};
+
+stackMethods.pop = function(){
+  var popped = this.storage[this.stackSize];
+  popped--;
+  return popped;
 }
 
 
