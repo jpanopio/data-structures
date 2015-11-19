@@ -27,7 +27,7 @@ queueMethods.enqueue = function(value){
 };
 
 queueMethods.dequeue = function(){
-  var dequeued = this[this.queueSize];
+  var dequeued = this[1];
   for(var key in this){
     this[key] = this[Number(key)+1];
   }
