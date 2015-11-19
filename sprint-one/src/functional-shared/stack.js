@@ -19,7 +19,7 @@ var stackMethods = {};
 
 stackMethods.size = function(){
   return this.stackSize >= 0 ? this.stackSize : 0;
-}
+};
 
 stackMethods.push = function(value){
   this.stackSize++;
@@ -28,8 +28,7 @@ stackMethods.push = function(value){
 
 stackMethods.pop = function(){
   var popped = this.storage[this.stackSize];
-  popped--;
+  this.stackSize--;
   return popped;
-}
-
+};
 
