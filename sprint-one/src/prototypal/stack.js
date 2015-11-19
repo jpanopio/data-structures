@@ -23,6 +23,6 @@ stackMethods.pop = function(value){
   var popped = this.storage[this.stackSize];
   this.stackSize--;
   return popped;
-}
+};
 
 
