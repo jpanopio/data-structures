@@ -3,16 +3,23 @@ var Tree = function(value) {
   newTree.value = value;
 
   // your code here
-  newTree.children = null;  // fix me
-
+  newTree.children = [];  // fix me
+  extend(newTree, treeMethods);
   return newTree;
+};
+
+var extend = function(to, from) {
+  for(var prop in from) {
+    to[prop] = from[prop];
+  }
 };
 
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
   // your code here
-  newTree.children = null;  // fix me
+  var newTree = new Tree(value);
+  this.children.push(newTree);  // fix me
 };
 
 treeMethods.contains = function(target) {
