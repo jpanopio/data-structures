@@ -12,14 +12,23 @@ var LinkedList = function() {
       this.tail.next = newNode;
       this.tail = newNode;
     }
-    debugger;
   };
 
   list.removeHead = function() {
+    var removed = this.head.value;
     this.head = this.head.next;
+    return removed;
   };
 
   list.contains = function(target) {
+    var current = this.head;
+    while(current){
+      if(current.value === target){
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
   };
 
   return list;
