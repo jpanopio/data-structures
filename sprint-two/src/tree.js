@@ -28,7 +28,6 @@ treeMethods.contains = function(target) {
   }
   
   for(var i = 0; i < this.children.length; i++){
-    console.log(this.children[i]);
     if(!(this.children[i].contains(target))) {
       continue;
     } else {
