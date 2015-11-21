@@ -31,25 +31,34 @@ bstMethods.insert = function(value){
 
 bstMethods.contains = function(value){
   var current = this.value;
-
-  // Try to implement ternary operators later
-    if(current === value) {
-      return true;
+  if(current === value) {
+    return true;
+  } else {
+    if(value < current) {
+      if(this.left !== undefined) {
+        return this.left.contains(value);
+      }
     } else {
-      if(value < current) {
-        if(this.left !== undefined) {
-          this.left.contains(value);
-        }
-      } else {
-        if(this.right !== undefined) {
-          this.right.contains(value);
-        }
+      if(this.right !== undefined) {
+        return this.right.contains(value);
       }
     }
+  }
   return false;
 };
 
-bstMethods.depthFirstLog = function(){};
+bstMethods.depthFirstLog = function(callback){
+  callback(this.value);
+
+  if(this.left !== undefined) {
+    this.left.depthFirstLog(callback);
+  }
+  if(this.right !== undefined) {
+    this.right.depthFirstLog(callback);
+  }
+
+  return;
+};
 /*
  * Complexity: What is the time complexity of the above functions?
  */
