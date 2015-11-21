@@ -67,7 +67,7 @@ describe('doublyLinkedList', function() {
   it('should remove nodes from the tail', function(){
     doublyLinkedList.addToTail(4);
     doublyLinkedList.addToTail(5);
-    doublyLinkedList.removeTail();
+    expect(doublyLinkedList.removeTail()).to.equal(5);
     expect(doublyLinkedList.contains(5)).to.equal(false);
     expect(doublyLinkedList.tail.value).to.equal(4);
   });
