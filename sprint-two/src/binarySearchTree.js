@@ -24,18 +24,10 @@ bstMethods.contains = function(value){
   var current = this.value;
   if(current === value) {
     return true;
-  } else {
-    if(value < current) {
-      if(this.left !== undefined) {
-        return this.left.contains(value);
-      }
-    } else {
-      if(this.right !== undefined) {
-        return this.right.contains(value);
-      }
-    }
   }
-  return false;
+
+  return value < current ? this.left !== undefined && this.left.contains(value) : 
+                          this.right !== undefined && this.right.contains(value);
 };
 
 bstMethods.depthFirstLog = function(callback){
