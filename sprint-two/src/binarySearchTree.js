@@ -29,7 +29,25 @@ bstMethods.insert = function(value){
   }
 };
 
-bstMethods.contains = function(){};
+bstMethods.contains = function(value){
+  var current = this.value;
+
+  // Try to implement ternary operators later
+    if(current === value) {
+      return true;
+    } else {
+      if(value < current) {
+        if(this.left !== undefined) {
+          this.left.contains(value);
+        }
+      } else {
+        if(this.right !== undefined) {
+          this.right.contains(value);
+        }
+      }
+    }
+  return false;
+};
 
 bstMethods.depthFirstLog = function(){};
 /*
