@@ -1,37 +1,37 @@
-var Tree = function(value) {
+var Tree = function (value) {
   var newTree = {};
   newTree.value = value;
+  newTree.children = [];
 
-  // your code here
-  newTree.children = [];  // fix me
-  extend(newTree, treeMethods);
+  extend(treeMethods, newTree);
+
   return newTree;
 };
 
-var extend = function(to, from) {
-  for(var prop in from) {
-    to[prop] = from[prop];
-  }
+var extend = function (from, to) {
+  _.each(from, function (value, key) {
+    to[key] = value;
+  });
 };
 
 var treeMethods = {};
 
-treeMethods.addChild = function(value) {
-  // your code here
-  var newTree = new Tree(value);
-  this.children.push(newTree);  // fix me
+treeMethods.addChild = function (value) {
+  this.children.push(Tree(value));
 };
 
-treeMethods.contains = function(target) {
-  if(this.value === target){
+treeMethods.contains = function (target, currentNode) {
+  var checkNode = currentNode || this;
+  if (checkNode.value === target) {
     return true;
   }
-  
-  for(var i = 0; i < this.children.length; i++){
-    if(!(this.children[i].contains(target))) {
-      continue;
-    } else {
-      return true;
+  if (checkNode.children.length === 0) {
+    return false;
+  } else {
+    for (var i = 0; i < checkNode.children.length; i++) {
+      if (checkNode.contains(target, checkNode.children[i])) {
+        return true;
+      }
     }
   }
 
