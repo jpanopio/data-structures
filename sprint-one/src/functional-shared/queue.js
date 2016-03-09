@@ -1,38 +1,36 @@
 var Queue = function() {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
-  var queue = {};
-  queue.storage = {};
-  queue.queueSize = 0;
+  var newQueue = {};
+  newQueue.storage = {};
+  newQueue.storageSize = 0;
+  extend(newQueue, queueMethods);
 
-  extend(queue, queueMethods);
-
-  return queue;
+  return newQueue;
 };
 
-var extend = function(to, from) {
-  for (var key in from) {
-    to[key] = from[key];
-  }
+var extend = function (to, from) {
+  _.each(from, function (value, key) {
+    to[key] = value;
+  });
 };
 
 var queueMethods = {};
 
-queueMethods.size = function(){
-  return this.queueSize >= 0 ? this.queueSize : 0;
+queueMethods.size = function () {
+  return this.storageSize;
 };
 
-queueMethods.enqueue = function(value){
-  this.queueSize++;
-  this.storage[this.queueSize] = value;
+queueMethods.enqueue = function (value) {
+  this.storage[this.storageSize] = value;
+  this.storageSize++;
 };
 
-queueMethods.dequeue = function(){
-  var dequeued = this.storage[1];
-  for(var key in this.storage){
-    this.storage[key] = this.storage[Number(key)+1];
+queueMethods.dequeue = function () {
+  var dequeued = this.storage[0];
+  delete this.storage[0];
+  for (var prop in this.storage) {
+    this.storage[prop - 1] = this.storage[prop];
+    delete this.storage[prop];
   }
-  delete this.storage[this.queueSize];
-  this.queueSize--;
+  this.storageSize === 0 ? this.storageSize : this.storageSize--;
   return dequeued;
 };
