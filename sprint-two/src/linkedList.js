@@ -1,34 +1,35 @@
-var LinkedList = function() {
+var LinkedList = function () {
   var list = {};
   list.head = null;
   list.tail = null;
 
-  list.addToTail = function(value) {
-    var newNode = new Node(value);
-    if(this.head === null) {
-      this.head = newNode;
-      this.tail = newNode;
+  list.addToTail = function (value) {
+    var newNode = Node(value);
+    if (!list.head) {
+      list.head = newNode;
     } else {
-      this.tail.next = newNode;
-      this.tail = newNode;
+      list.tail.next = newNode;
     }
+    list.tail = newNode;
   };
 
-  list.removeHead = function() {
-    var removed = this.head.value;
-    this.head = this.head.next;
-    return removed;
+  list.removeHead = function () {
+    var removedHead = list.head;
+    list.head = null;
+    list.head = removedHead.next;
+
+    return removedHead.value;
   };
 
-  list.contains = function(target) {
-    var current = this.head;
-    while(current){
-      if(current.value === target){
-        return true;
-      }
-      current = current.next;
+  list.contains = function (target, currentNode) {
+    var checkNode = currentNode || list.head;
+    if (checkNode.value === target) {
+      return true;
     }
-    return false;
+    if (checkNode.next === null) {
+      return false;
+    }
+    return list.contains(target, checkNode.next)
   };
 
   return list;
